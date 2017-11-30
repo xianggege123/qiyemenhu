@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+
+#dome{
+    width:180px;
+    height:250px;
+    border:1px solid #000;
+    margin:50px auto;
+    padding:5px 15px;
+    overflow:hidden;
+}
+#dome li{padding:5px 5px;}
+</style>
+<script type="text/javascript">
+//综合案例：书讯快递
+/*
+    (1)取得三个对象的id
+    (2)三个div高度一致
+    (3)dome2中的内容与dome1的内容一样
+    (4)dome的scrollTop属性来实现滚动
+    (5)鼠标放上dome停止滚动，鼠标移开dome继续滚动
+*/
+window.onload=function(){
+    //（1）获取三个<div>的id
+    var dome=document.getElementById("dome");
+    var dome1=document.getElementById("dome1");
+    var dome2=document.getElementById("dome2");
+    //（2）三个<div>的高度一致
+    /*
+        这里的style属性，又是一个style对象，代表css对象
+        style对象的属性与css属性一样
+        这里的style对象代表行内样式
+        offsetHeight:元素对象的可见高，不带px单位
+    */
+    dome1.style.height=dome.offsetHeight+"px";
+    dome2.style.height=dome.offsetHeight+"px";
+    //(3)将dome1中的内容复制到dome2中
+    dome2.innerHTML=dome1.innerHTML;
+    //(4)将dome的scrollTop属性来实现滚动
+    window.setInterval("start2(dome)",40);
+}
+function start2(){
+    if(dome.scrollTop==dome.offsetHeight){
+        dome.scrollTop=0;
+    }else{
+        dome.scrollTop++;
+    }
+}
+
+</script>
+
+</head>
+
+<body>
+<div id="dome">
+    <div id="dome1">
+        
+            <img src="images/chanpin.jpg"/>
+            <img src="images/chanpin.jpg"/>
+            <img src="images/chanpin.jpg"/>
+            <img src="images/chanpin.jpg"/>
+        
+    </div>
+    <div id="dome2"></div>
+</div>
+</body>
+</html>
